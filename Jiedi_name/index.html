@@ -1,63 +1,63 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
-<head>
-<title>随机抽取你的Jiedi Name并评分</title>
-<link rel='icon' src='/favicon.svg'>
-<meta charset='utf-8'>
-<script>
-let s=0,forever;
-let cdt=[
-"new String(num.innerHTML).charAt()==8",
-"new String(num.innerHTML).charAt(1)==5",
-"new String(num.innerHTML).charAt(2)==7",
-"new String(num.innerHTML).charAt()!=8&&(new String(num.innerHTML).charAt(1)==8||new String(num.innerHTML).charAt(2)==8)",
-"new String(num.innerHTML).charAt(1)!=5&&(new String(num.innerHTML).charAt()==5||new String(num.innerHTML).charAt(2)==5)",
-"new String(num.innerHTML).charAt(2)!=7&&(new String(num.innerHTML).charAt()==7||new String(num.innerHTML).charAt(1)==7)",
-"(eval(cdt[0])||eval(cdt[3]))&&(eval(cdt[1])||eval(cdt[4]))&&(eval(cdt[2])||eval(cdt[5]))&&num.innerHTML!=857",
-"new String(num.innerHTML)==857",
-"new String(num.innerHTML)==999||new String(num.innerHTML)==555"
-];
-let score=[20,20,20,10,10,10,10,40,-857];
-let description=[
-"百位是8",
-"十位是5",
-"个位是7",
-"百位不是8但个位或十位是8",
-"十位不是5但个位或百位是5",
-"个位不是7但十位或百位是7",
-"各个数位上有8、5、7，但不是857",
-"是857",
-"玩tfgs"
-];
-function start(){
-s?0:s=1,forever=setInterval('num.innerHTML=Math.round(Math.random()*899+100)',20);
-}
-function stop(){
-if(s){
-let sum=0;
-clearInterval(forever);
-result.innerHTML='评价：<br>';
-for(let i=0;i<cdt.length;i++){
-if(eval(cdt[i])){
-sum+=score[i];
-result.innerHTML+=`${description[i]}，${(score[i]>0?"加":"扣")+score[i]}分<br>`
-}
-}
-result.innerHTML+='总分：'+sum;
-}
-}
-</script>
-<style>
-#result{
-font-size:26px;
-}
-</style>
-</head>
-<body>
-<h1>你的Jiedi Name是：Jiedi<span id='num'>___</span></h1>
-<input type="button" value='stop' onclick="stop();">
-<input type="button" value='start' onclick="start();">
-<div id='result'>
-</div>
-</body>
+	<head>
+		<title>随机抽取你的Jiedi Name并评分</title>
+		<link rel='icon' src='/favicon.svg'>
+		<meta charset='utf-8'>
+		<script>
+			let s=0,forever;
+			let cdt=[
+				"new String(num.innerHTML).charAt()==8",
+				"new String(num.innerHTML).charAt(1)==5",
+				"new String(num.innerHTML).charAt(2)==7",
+				"new String(num.innerHTML).charAt()!=8&&(new String(num.innerHTML).charAt(1)==8||new String(num.innerHTML).charAt(2)==8)",
+				"new String(num.innerHTML).charAt(1)!=5&&(new String(num.innerHTML).charAt()==5||new String(num.innerHTML).charAt(2)==5)",
+				"new String(num.innerHTML).charAt(2)!=7&&(new String(num.innerHTML).charAt()==7||new String(num.innerHTML).charAt(1)==7)",
+				"(eval(cdt[0])||eval(cdt[3]))&&(eval(cdt[1])||eval(cdt[4]))&&(eval(cdt[2])||eval(cdt[5]))&&num.innerHTML!=857",
+				"new String(num.innerHTML)==857",
+				"new String(num.innerHTML)==999"
+			];
+			let score=[20,20,20,10,10,10,10,40,-857];
+			let description=[
+				"百位是8",
+				"十位是5",
+				"个位是7",
+				"百位不是8但个位或十位是8",
+				"十位不是5但个位或百位是5",
+				"个位不是7但十位或百位是7",
+				"各个数位上有8、5、7，但不是857",
+				"是857",
+				"玩tfgs"
+			];
+			function start(){
+				s?0:s=1,forever=setInterval('num.innerHTML=Math.round(Math.random()*899+100)',20);
+			}
+		function stop(){
+			if(s){
+				let sum=0;
+				clearInterval(forever);
+				result.innerHTML='评价：<br>';
+				for(let i=0;i<cdt.length;i++){
+					if(eval(cdt[i])){
+						sum+=score[i];
+						result.innerHTML+=`${description[i]}，${(score[i]>0?"加":"扣")+Math.abs(score[i])}分<br>`
+					}
+				}
+				result.innerHTML+='总分：'+sum;
+			}
+		}
+		</script>
+		<style>
+			#result{
+				font-size:26px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>你的Jiedi Name是：Jiedi<span id='num'>___</span></h1>
+		<input type="button" value='stop' onclick="stop();">
+		<input type="button" value='start' onclick="start();">
+		<div id='result'>
+		</div>
+	</body>
 </html>
